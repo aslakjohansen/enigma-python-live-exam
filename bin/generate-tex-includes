@@ -83,13 +83,13 @@ while (scalar @infiles > 0) {
 	             " " . $source .
 		           " --export=" . $target . " " . $dia_format_cmd;
 	      handle_target($source, $target, $cmd);
-  	} elsif ($lines =~ s/^\\includeSVG(|fs)\{([^\}]*)\}//) {
+  	} elsif ($lines =~ s/^\\includeSVG(fs|)\{([^\}]*)\}//) {
       $source =  "doc/figs/" . $2 . ".svg";
 	    $target =  $outdir . "/figs/" . $2 . "." . $graphicsformat;
 	    if ($graphicsformat eq "eps") {
-	      $outputformat = "-E";
+	      $outputformat = "--export-type=eps";
 	    } else {
-	      $outputformat = "-A";
+	      $outputformat = "--export-type=pdf";
 	    }
 	    $cmd = $handlers{'Inkscape'} .
 		         " " . $source .
