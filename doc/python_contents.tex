@@ -1,0 +1,563 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Getting Started
+
+\section{Getting Started}
+\begin{frame}
+    \vspace{25mm}
+    \begin{center}
+        \Huge{Part 1:\\Getting Started}
+    \end{center}
+\end{frame}
+
+\subsection{Two Modes of Execution}
+{
+\usebackgroundtemplate{\includeSVGfs{execution}}
+\begin{frame}
+    \frametitle{Two Modes of Execution}
+    \vspace{5mm}
+    
+\end{frame}
+}
+
+\subsection{Imports}
+\defverbatim[colored]\contentImports{
+\begin{minted}{python}
+import os
+from sys import argv
+from sys import exit as bye
+
+print(os.name)
+bye()
+\end{minted}
+}
+\begin{frame}
+    \frametitle{Imports}
+    \vspace{3mm}
+    \contentImports
+\end{frame}
+
+\subsection{First Steps}
+\defverbatim[colored]\contentFirstSteps{
+\begin{minted}{python}
+#!/usr/bin/env python3
+import sys
+
+print("Hello, world!")
+sys.exit() # this is really not necessary
+\end{minted}
+}
+\begin{frame}
+    \frametitle{First Steps}
+    \vspace{3mm}
+    \contentFirstSteps
+\end{frame}
+
+\subsection{Command-Line Arguments}
+\defverbatim[colored]\contentCLA{
+\begin{minted}{python}
+from sys import argv, exit
+
+if len(argv) != 3:
+    print('Syntax: %s INPUT_FILENAME OUTPUT_FILENAME' % argv[0])
+    print('        %s log.txt analysis.csv' % argv[0])
+    exit(1)
+input_filename  = argv[1]
+output_filename = argv[2]
+
+print('%s -> %s' % (input_filename, output_filename))
+\end{minted}
+}
+\defverbatim[colored]\contentCLAoutput{
+\begin{minted}[fontsize=\tiny]{shell-session}
+aslak@thera:~/vcs/git/dm-course/src/python$ python3 process.py 
+Syntax: process.py INPUT_FILENAME OUTPUT_FILENAME
+        process.py log.txt analysis.csv
+aslak@thera:~/vcs/git/dm-course/src/python$ python3 process.py log.txt analysis.csv
+log.txt -> analysis.csv
+aslak@thera:~/vcs/git/dm-course/src/python$
+\end{minted}
+}
+\begin{frame}
+    \frametitle{Command-Line Arguments}
+    \vspace{3mm}
+    \contentCLA
+    
+    \pause
+    \vspace{7mm}
+    \contentCLAoutput
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Basic Datatypes and -Structures
+
+\section{Basic Datatypes and -Structures}
+\begin{frame}
+    \vspace{25mm}
+    \begin{center}
+        \Huge{Part 2:\\Basic Datatypes and -Structures}
+    \end{center}
+\end{frame}
+
+\subsection{Types}
+{
+\usebackgroundtemplate{\includeSVGfs{types}}
+\begin{frame}
+    \frametitle{Types}
+\end{frame}
+}
+
+\subsection{Boolean Operators}
+\defverbatim[colored]\contentBooleans{
+\begin{minted}{python}
+if page < pagecount and good_book:
+    print('Enjoy!')
+
+while not there:
+    print('Are we there yet?')
+
+if finished or not started:
+    print('Not much is happening :-(')
+\end{minted}
+}
+\begin{frame}
+    \frametitle{Boolean Operators}
+    \vspace{5mm}
+    In python boolean operators are spelled out.
+    
+    \vspace{5mm}
+    \contentBooleans
+\end{frame}
+
+\subsection{String Operations}
+\defverbatim[colored]\contentStrings{
+\begin{minted}[fontsize=\tiny]{pycon}
+>>> s1 = "Alice was beginning to get very tired of sitting by her sister on the bank"
+>>> s1
+'Alice was beginning to get very tired of sitting by her sister on the bank'
+>>> s2 = 'and of having nothing to do'
+>>> s2
+'and of having nothing to do'
+>>> s = s1+", "+s2
+>>> s
+'Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do'
+>>> s = s.replace(',', '')
+>>> s
+'Alice was beginning to get very tired of sitting by her sister on the bank and of having nothing to do'
+>>> words = s.split(' ')
+>>> words
+['Alice', 'was', 'beginning', 'to', 'get', 'very', 'tired', 'of', 'sitting', 'by', 'her', 'sister', 'on', 'the',
+'bank', 'and', 'of', 'having', 'nothing', 'to', 'do']
+>>> '%d: %s' % (3, 'March')
+'3: March'
+>>> '_'.join(words)
+'Alice_was_beginning_to_get_very_tired_of_sitting_by_her_sister_on_the_bank_and_of_having_nothing_to_do'
+\end{minted}
+}
+\begin{frame}
+    \frametitle{String Operations}
+    \vspace{5mm}
+    \contentStrings
+\end{frame}
+
+\defverbatim[colored]\contentFunction{
+\begin{minted}{python}
+def add (a, b, c=0):
+    return a+b+c
+
+print(add(1,2,3))
+print(add(1,2))
+
+a = add
+print(a(1,2))
+\end{minted}
+}
+\subsection{Functions}
+\begin{frame}[fragile]
+    \frametitle{Functions}
+    \vspace{-2mm}
+    \contentFunction
+    \pause
+    \vspace{5mm}
+    \begin{verbatim}
+6
+3
+3
+    \end{verbatim}
+\end{frame}
+
+\defverbatim[colored]\contentTypeIntrospectionI{
+\begin{minted}{pycon}
+>>> t = type(True)
+>>> t
+<class 'bool'>
+>>> type(t)
+<class 'type'>
+>>> type(bool)
+<class 'type'>
+>>> t == bool
+True
+\end{minted}
+}
+\defverbatim[colored]\contentTypeIntrospectionII{
+\begin{minted}{pycon}
+>>> def fun(var): return var
+... 
+>>> type(fun)
+<class 'function'>
+>>> f = fun
+>>> type(f)
+<class 'function'>
+>>> f(1)
+1
+>>> g = lambda a: a
+>>> type(g)
+<class 'function'>
+>>> g(1)
+1
+\end{minted}
+}
+\subsection{Type Introspection}
+\begin{frame}
+    \frametitle{Type Introspection}
+    \vspace{0mm}
+    \contentTypeIntrospectionI
+\end{frame}
+\begin{frame}
+    \frametitle{Type Introspection}
+    \vspace{0mm}
+    \contentTypeIntrospectionII
+\end{frame}
+
+\subsection{Object-Orientation}
+\begin{frame}
+    \frametitle{Object-Orientation}
+    \vspace{2mm}
+    
+    \inputminted[fontsize=\small]{python}{../src/python/objectexample.py}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Flow Control
+
+\section{Flow Control}
+\begin{frame}
+    \vspace{25mm}
+    \begin{center}
+        \Huge{Part 3:\\Flow Control}
+    \end{center}
+\end{frame}
+
+\subsection{Branching}
+\defverbatim[colored]\contentBranching{
+\begin{minted}{python}
+if len(lines)>0 and len(line[0])>0 and line[0][0]=='#':
+    print('First line is a comment')
+
+parts = line.split(' ')
+command = parts[0]
+if   command=='load':
+    load_file()
+elif command=='save':
+    save_file()
+elif command=='quit':
+    quit()
+else:
+    print('Unknown command "'+command+'"')
+\end{minted}
+}
+\begin{frame}
+    \frametitle{Branching}
+    \vspace{3mm}
+    \contentBranching
+\end{frame}
+
+\subsection{Missing For-Loop}
+\defverbatim[colored]\contentForI{
+\begin{minted}{python}
+for line in lines:
+    print(line)
+\end{minted}
+}
+\defverbatim[colored]\contentForII{
+\begin{minted}{python}
+for i in range(len(lines)):
+    line = lines[i]
+    print(str(i)+': '+line)
+\end{minted}
+}
+\begin{frame}
+    \frametitle{Missing For-Loop}
+    \vspace{3mm}
+    Python does not have a \textsl{for} loop.
+    
+    \pause
+    \vspace{3mm}
+    Python has a \textsl{foreach} loop.
+    \pause
+    
+    \vspace{6mm}
+    Iterating over a list:
+    \vspace{3mm}
+    \contentForI
+    \pause
+    
+    \vspace{6mm}
+    Iterating over a list with access to the index:
+    \vspace{3mm}
+    \contentForII
+\end{frame}
+
+\subsection{Generating Ranges of Integers}
+\defverbatim[colored]\contentRange{
+\begin{minted}{pycon}
+>>> range(5)
+range(0, 5)
+>>> list(range(5))
+[0, 1, 2, 3, 4]
+>>> list(range(1,5))
+[1, 2, 3, 4]
+>>> list(range(1,5,2))
+[1, 3]
+>>> for i in range(1,5,2):
+...     print(i)
+... 
+1
+3
+\end{minted}
+}
+\begin{frame}
+    \frametitle{Generating Ranges of Integers}
+    \vspace{3mm}
+    The \texttt{range} function returns a generator for a sequence of integers.
+    \pause
+    \vspace{3mm}
+    \contentRange
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Lists
+
+\section{Lists}
+\begin{frame}
+    \vspace{25mm}
+    \begin{center}
+        \Huge{Part 4:\\Lists}
+    \end{center}
+\end{frame}
+
+\subsection{Basic Operations}
+\defverbatim[colored]\contentList{
+\begin{minted}[fontsize=\tiny]{pycon}
+>>> l = [1,2,3]
+>>> l
+[1, 2, 3]
+>>> l.append(4)
+>>> l
+[1, 2, 3, 4]
+>>> l.extend([7,6,5])
+>>> l
+[1, 2, 3, 4, 7, 6, 5]
+>>> sorted(l)
+[1, 2, 3, 4, 5, 6, 7]
+>>> l
+[1, 2, 3, 4, 7, 6, 5]
+>>> l.sort()
+>>> l
+[1, 2, 3, 4, 5, 6, 7]
+>>> len(l)
+7
+>>> l[2], l[-1]
+(3, 7)
+>>> l[2:]
+[3, 4, 5, 6, 7]
+>>> l[2:4]
+[3, 4]
+>>> l[:4]
+[1, 2, 3, 4]
+>>> 4 in l, 42 in l
+(True, False)
+\end{minted}
+}
+\begin{frame}
+    \frametitle{List Operations}
+    \vspace{3mm}
+    \contentList
+\end{frame}
+
+\subsection{Higher-Order Functions}
+\defverbatim[colored]\contentLambda{
+\begin{minted}[fontsize=\normalsize]{pycon}
+>>> l = [-17,2,5,-4,4,7,-3,-1,9,1]
+>>> incr = lambda v: v+1
+>>> map(incr, l)
+<map object at 0x7f33c8440b20>
+>>> list(map(incr, l))
+[-16, 3, 6, -3, 5, 8, -2, 0, 10, 2]
+>>> pos = lambda v: v>=0
+>>> filter(pos, l)
+<filter object at 0x7f33c8440b20>
+>>> list(filter(pos, l))
+[2, 5, 4, 7, 9, 1]
+>>> list(map(incr, filter(pos, l)))
+[3, 6, 5, 8, 10, 2]
+\end{minted}
+}
+\begin{frame}
+    \frametitle{Higher-Order Functions over Lists}
+    \vspace{0mm}
+    \contentLambda
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Dictionaries
+
+\section{Dictionaries}
+\begin{frame}
+    \vspace{25mm}
+    \begin{center}
+        \Huge{Part 5:\\Dictionaries}
+    \end{center}
+\end{frame}
+
+\subsection{Basic Operations}
+\defverbatim[colored]\contentDict{
+\begin{minted}[fontsize=\tiny]{pycon}
+>>> {}
+{}
+>>> d = {'jan': 1, 'feb': 2, 'mar': 3}
+>>> d
+{'jan': 1, 'feb': 2, 'mar': 3}
+>>> d['jan']
+1
+>>> d['apr'] = 4
+>>> d
+{'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4}
+>>> d['list'] = [1,2,3]
+>>> d
+{'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'list': [1, 2, 3]}
+>>> 'jan' in d
+True
+>>> 'may' in d
+False
+>>> d.keys()
+dict_keys(['jan', 'feb', 'mar', 'apr', 'list'])
+>>> list(d.keys())
+['jan', 'feb', 'mar', 'apr', 'list']
+>>> for key in d: print(key)
+... 
+jan
+feb
+mar
+apr
+list
+>>> del(d['feb'])
+>>> d
+{'jan': 1, 'mar': 3, 'apr': 4, 'list': [1, 2, 3]}
+\end{minted}
+}
+\begin{frame}
+    \frametitle{Basic Operations}
+    \vspace{0mm}
+    \contentDict
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Strings
+
+\section{Strings}
+\begin{frame}
+    \vspace{25mm}
+    \begin{center}
+        \Huge{Part 6:\\Strings}
+    \end{center}
+\end{frame}
+
+\subsection{Basic Operations}
+\defverbatim[colored]\contentStrings{
+\begin{minted}{pycon}
+>>> initial = ' once upon a time  '
+>>> initial
+' once upon a time  '
+>>> len(initial)
+19
+>>> stripped = initial.strip()
+>>> stripped
+'once upon a time'
+>>> words = stripped.split(' ')
+>>> words
+['once', 'upon', 'a', 'time']
+>>> words[1], stripped[1]
+('upon', 'n')
+>>> joined = '_'.join(words)
+>>> joined
+'once_upon_a_time'
+\end{minted}
+}
+\begin{frame}
+    \frametitle{\textbf{Strings:} Basic Operations}
+    \vspace{0mm}
+    \contentStrings
+\end{frame}
+
+\subsection{Regular Expressions}
+\defverbatim[colored]\contentRegexp{
+\begin{minted}[fontsize=\footnotesize]{python}
+import re
+
+urls = [
+    'https://www.gutenberg.org/files/11/11-h/11-h.htm',
+    'https://golang.org',
+    'http://www.google.com:80/',
+    'definitely not a URL',
+]
+pattern = re.compile('([^:]+)://([^:/]+)(:\d+|)(/.*|)')
+
+for url in urls:
+    mo = pattern.match(url)
+    
+    if mo:
+        print('proto="%s" domain="%s" port="%s" path="%s"' %
+              (mo.group(1), mo.group(2), mo.group(3), mo.group(4)))
+\end{minted}
+}
+\begin{frame}[fragile]
+    \frametitle{Regular Expressions}
+    \vspace{0mm}
+    \contentRegexp
+    
+    \vspace{0mm}
+    \pause
+    {\footnotesize
+    \begin{verbatim}
+proto="https" domain="www.gutenberg.org" port="" path="/files/11/11-h/11-h.htm"
+proto="https" domain="golang.org" port="" path=""
+proto="http" domain="www.google.com" port=":80" path="/"
+    \end{verbatim}
+    }
+\end{frame}
+
+\section{More Information}
+\begin{frame}
+    \vspace{25mm}
+    \begin{center}
+        {\Huge Hungry for more?}\\ \vspace{10mm}
+        \url{https://github.com/aslakjohansen/enigma-python-intro}
+    \end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Questions
+
+\section{Questions}
+\begin{frame}
+    \frametitle{\textbf{Questions and Comments?}}
+    \vspace{-15mm}
+    \begin{center}
+    \includegraphics[scale=0.4]{./figs/Boy-asking-question.pdf}
+    \end{center}
+    \vspace{-25mm}
+    \scalebox{0.2}{\url{https://openclipart.org/detail/238687/boy-thinking-of-question}}
+\end{frame}
+
