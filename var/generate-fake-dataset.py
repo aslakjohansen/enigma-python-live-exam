@@ -76,7 +76,7 @@ def produce_class_file (db, filename):
     for i in range(len(classes)):
         groups = classes[i]
         for group in groups:
-            lines.append('Klasse %d\t%s\n' % (i, group.split(' ')[1]))
+            lines.append('Klasse %d\t%s\n' % (i+1, group.split(' ')[1]))
     write_lines(filename, lines)
 
 def produce_group_grade_file (db, filename):
@@ -101,6 +101,15 @@ def produce_test_result_file (db, filename):
     
     write_lines(filename, lines)
 
+def produce_students_file(db, filename):
+    lines = []
+    for entry in db:
+        identity = entry['id']
+        name     = entry['name']
+        email    = entry['email']
+        lines.append('%s;%s;%s\n' % (identity, name, email))
+    write_lines(filename, lines)
+
 db = read_name_basics('name.basics.tsv')
 
 scale(db, 'birth', 0, 100)
@@ -118,4 +127,5 @@ produce_group_file(db, 'data/Grupper.data')
 produce_class_file(db, 'data/Klasser.tsv')
 produce_group_grade_file(db, 'data/group_grades.json')
 produce_test_result_file(db, 'data/test_results.csv')
+produce_students_file(db, 'data/students.csv')
 

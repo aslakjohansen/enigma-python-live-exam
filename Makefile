@@ -14,7 +14,9 @@ var:
 	mkdir var
 
 var/data: var
-	mkdir var/data
+	touch  var/data
+	rm -Rf var/data
+	mkdir  var/data
 
 var/%.tsv.gz: var
 	cd var ; wget https://datasets.imdbws.com/$*.tsv.gz
