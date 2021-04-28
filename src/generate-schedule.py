@@ -9,32 +9,32 @@ prefix = '../var/data'
 course_name = 'Python Introduktion'
 
 daily_schedule = [
-        '9:00',
-        '9:20',
-        '9:40',
-        None, # 10 min break
-        '10:10',
-        '10:30',
-        '10:50',
-        None, # 10 min break
-        '11:20',
-        '11:40',
-        '12:00',
-        None, # 40 min break
-        '13:00',
-        '13:20',
-        '13:40',
-        None, # 10 min break
-        '14:10',
-        '14:30',
-        '14:50',
-        None, # 10 min break
-        '15:20',
-        '15:40',
-        '16:00',
-        None, # 10 min break
-        '16:10',
-        '16:30',
+    '9:00',
+    '9:20',
+    '9:40',
+    None, # 10 min break
+    '10:10',
+    '10:30',
+    '10:50',
+    None, # 10 min break
+    '11:20',
+    '11:40',
+    '12:00',
+    None, # 40 min break
+    '13:00',
+    '13:20',
+    '13:40',
+    None, # 10 min break
+    '14:10',
+    '14:30',
+    '14:50',
+    None, # 10 min break
+    '15:20',
+    '15:40',
+    '16:00',
+    None, # 10 min break
+    '16:10',
+    '16:30',
 ]
 
 schedule = [
